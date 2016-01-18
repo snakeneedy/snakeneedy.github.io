@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8" />
+	<title>PC^2 SOP - snakeneedy.github.io</title>
+</head>
+<body>
+<xmp theme="united" style="display:none;">
+
+# 目錄
+<!-- MarkdownTOC -->
+
+- [大致流程](#大致流程)
+- [下載 PC2](#下載-pc2)
+- [前置設定](#前置設定)
+	- [懶人包](#懶人包)
+	- [比賽中](#比賽中)
+- [參考資料](#參考資料)
+
+<!-- /MarkdownTOC -->
+
+<a name="大致流程"></a>
+# 大致流程
+
+- 下載 PC<sup>2</sup>
+- 前置設定
+- 比賽中
+- 結束
+
+<a name="下載-pc2"></a>
+# 下載 PC<sup>2</sup>
+
+下載位置: http://pc2.ecs.csus.edu/secret.1201.html
+
+建議是下載 ZIP 檔，這樣在 Linux 和 Windows 都可以使用
+
+<a name="前置設定"></a>
+# 前置設定
+
+<a name="懶人包"></a>
+## 懶人包
+如果不想了解詳細的狀況可以看這邊就好。先分成 server 跟 client 端。
+
+- *先設定 server 端*
+- 解壓縮下載後的檔案 (以 pc2-9.3.0-3388.zip 為例)，會出現資料夾 (pc2-9.3.0)，暫且稱這個資料夾位置為 `/`
+- 打開 `/pc2v9.ini`，把 `Site 1` 的 `localhost` 改成要當作 server 端的 ip  
+
+```
+#
+# pc2v9.ini - settings for pc2
+# $Header$
+# pc2@ecs.csus.edu
+#
+
+# For all possible .ini entries see pc2v9.ini in the samps directory.
+
+[client]
+
+# Site 1
+server=192.168.34.136:50002
+# Site 2
+# server=localhost:51002
+# Site 3
+# server=localhost:52002
+
+[server]
+
+# For site 2 and Site 3
+# remoteServer=localhost:50002
+
+# eof $Id: pc2v9.ini 165 2007-04-07 20:05:32Z laned $
+```
+- 把 `/pc2v9.ini` 移動到 `/bin` 裡面
+- Linux 環境下可以把 `/bin` 裡面所有 bat 檔刪除  
+	bash 指令: `rm *.bat`
+- 視情況可以修改 `/data/xsl` 裡的 scoreboard 模板
+- **將整個根目錄 `/` clone 一份當作 client 端**
+- 開啟 `/bin/pc2server` 帳號 **site1** 密碼 **site1**
+	- 第一次執行跳出視窗要你輸入 password，這裡是對於 server 的二次密碼，依喜好輸入即可
+	- 之後執行會要求此密碼
+- 開啟 `/bin/pc2admin` 帳號 **root** 密碼 **administrator1**
+	- 設定 **Account**
+		- 用 Generate 可以快速產生想要的 team, judge, scoreboard 數量
+		- 基本上是 1 個 scoreboard、至少等同於題數的 judge、和大於參賽隊伍的 team (多幾個來做測試)
+		- 只能修改，沒辦法刪除 (小弟我不會刪)
+	- 設定 **Problems**
+		- 用 Add 新增題目
+		- 在 General 中
+			- Problem name: 要顯示的題目名稱
+			- Run Timeout Limit (Sec): TLE 的限制秒數
+			- Problem Requires Input Data
+				- Team Reads From: 基本上用 stdin
+				- Input Data File: 選輸入測資  
+				(Windows 下產生的文字檔可能會出現是否要轉換成 Linux 格式的訊息，選 Yes 就好)
+		- 在 Judging Type 選 Computer Judging
+			- Manual Review 不用選
+		- 在 Validator 中
+			- 選 Use PC^2 Validator
+			- Validator Option 選 diff
+		- 點 Add 完成
+		- 重複以上動作完成所有題目的新增
+	- 設定 **Auto Judge**
+		- 對每一個 Judge 作 Edit
+		- 勾選 Enable Auto Judging
+		- 分派題目，最基本要每個題目都分配到 1 個 Judge
+	- 設定 **Languages**
+		- 點 Add 新增
+		- 修改 Auto Populate with 的選項就好，基本上是新增 Java, GNU C++, GNU C
+	- 設定 **Times**
+		- PC<sup>2</sup> 預設是 5 小時
+		- 點 Edit
+			- Remaining: 剩餘時間
+			- Elapsed: 已過時間
+			- Length: 總時間
+			- 勾選 Stop Clock at end of contest (印象中不勾選會變成負的)
+	- 設定 **Settings**
+		- 可以修改 Contest Title
+- *再設定 client 端*
+- 以 client 資料夾為 `/`
+	- 先刪除 `/bin/pc2server` 和 `/bin/pc2admin`
+	- Windows 加刪 `/bin/pc2server.bat` 和 `/bin/pc2admin.bat`
+	- 想要再防範的話可以多刪 `/bin/pc2judge` 和 `/bin/pc2board`
+	- 將 client 端的檔案分派給所有的參賽組別，並告知各組的帳號及密碼
+	(預設是帳號密碼同為 team#，如 team12)
+- *scoreboard 設定*
+- 無 Apache
+	- 選定一台電腦連接投影機
+	- 開啟 `/bin/pc2board` 帳號 **scoreboard1** 密碼 **scoreboard1**
+	- 會有檔案新增至 `/bin/html/`
+	- 選一個喜歡的投影給選手看www
+	- 要修改內容請至 `/data/xsl/` 裡直接修改模板，因為這裡面的檔案室自動生成的
+- 有 Apache
+	- 小弟我還不清楚
+
+<a name="比賽中"></a>
+# 比賽中
+## 懶人包
+
+- 到 **admin** 端的 **Times** 點 Start
+- 切換到 **Run Contest**
+	- **Runs** 看到所有人的提交
+
+<a name="參考資料"></a>
+# 參考資料
+
+- 官方網站: http://pc2.ecs.csus.edu/
+- 官方說明文件: http://pc2.ecs.csus.edu/pc2docs.html
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</body>
+</html>

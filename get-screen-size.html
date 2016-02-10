@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8" />
+<title>Get Screen Size - snakeneedy.github.io</title>
+<style>
+body {
+	background-color: rgb(230, 230, 230);
+}
+div {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div>
+	<h1>Get Screen Size - snakeneedy.github.io</h1>
+	<h2>(Width, Height) = ( <span id="W"></span> x <span id="H"></span> )</h2>
+	<p>JavaScript is needed.</p>
+</div>
+<script>
+function updateScreenSize () {
+	document.getElementById('W').innerHTML = window.innerWidth;
+	document.getElementById('H').innerHTML = window.innerHeight;
+}
+window.onresize = updateScreenSize;
+updateScreenSize();
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@
           box-sizing: border-box;
 	font-family: "Consolas", "Courier New";
 }
-div {
+div, textarea {
 	width: 100%;
 	min-height: 100px;
 	border: 1px solid #000000;
@@ -22,11 +22,15 @@ div {
 	padding: 10px;
 	margin: 10px 0;
 }
+textarea {
+	overflow: hidden;
+	resize: none;
+}
 </style>
 </head>
 <body>
 <h1>URL Encode and Decode - snakeneedy</h1>
-<div id="input" contentEditable="true">Input url here</div>
+<textarea id="input" onkeyup="autogrow(this);" placeholder="Input url here"></textarea>
 <nav>
 	<input type="button" value="Encode" onclick="encode();" />
 	<input type="button" value="Decode" onclick="decode();" />
@@ -41,11 +45,17 @@ function selectContents(el) {
     sel.addRange(range);
 }
 function encode () {
-	document.getElementById('output').innerHTML = encodeURI(document.getElementById('input').innerHTML);
+	document.getElementById('output').innerHTML = encodeURI(document.getElementById('input').value);
 }
 function decode () {
-	document.getElementById('output').innerHTML = decodeURI(document.getElementById('input').innerHTML);
+	document.getElementById('output').innerHTML = decodeURI(document.getElementById('input').value);
 }
+function autogrow(textarea){
+var adjustedHeight=textarea.clientHeight;
+	adjustedHeight=Math.max(textarea.scrollHeight, 100);
+	textarea.style.height = adjustedHeight+'px';
+}
+
 </script>
 </body>
 </html>

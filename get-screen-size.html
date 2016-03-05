@@ -16,13 +16,16 @@ div {
 <body>
 <div>
 	<h1>Get Screen Size - snakeneedy.github.io</h1>
-	<h2>(Width, Height) = ( <span id="W"></span> x <span id="H"></span> )</h2>
+	<h2>Window (Width, Height) = ( <span id="wW"></span> x <span id="wH"></span> )</h2>
+	<h2>Screen (Width, Height) = ( <span id="sW"></span> x <span id="sH"></span> )</h2>
 	<p>JavaScript is needed.</p>
 </div>
 <script>
 function updateScreenSize () {
-	document.getElementById('W').innerHTML = window.innerWidth;
-	document.getElementById('H').innerHTML = window.innerHeight;
+	document.getElementById('wW').innerHTML = window.innerWidth;
+	document.getElementById('wH').innerHTML = window.innerHeight;
+	document.getElementById('sW').innerHTML = screen.width;
+	document.getElementById('sH').innerHTML = screen.height;
 }
 window.onresize = updateScreenSize;
 updateScreenSize();

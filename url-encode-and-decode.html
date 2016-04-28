@@ -1,61 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf8" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=1;" />
-	<title>URL Encode and Decode - snakeneedy</title>
+	<meta charset="utf-8" />
+	<title>Tools</title>
 <style type="text/css">
-/*
-  base.css
-*/
-* {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-	font-family: "Consolas", "Courier New";
-}
-div, textarea {
-	width: 100%;
-	min-height: 100px;
-	border: 1px solid #000000;
-	border-radius: 10px;
-	padding: 10px;
-	margin: 10px 0;
-}
 textarea {
-	overflow: hidden;
-	resize: none;
+    width: 80%;
+    height: 200px;
+}
+pre {
+    background-color: rgb(230, 230, 230);
 }
 </style>
 </head>
 <body>
-<h1>URL Encode and Decode - snakeneedy</h1>
-<textarea id="input" onkeyup="autogrow(this);" placeholder="Input url here"></textarea>
-<nav>
-	<input type="button" value="Encode" onclick="encode();" />
-	<input type="button" value="Decode" onclick="decode();" />
-</nav>
-<div id="output" onclick="selectContents(this);">result</div>
-<script type="text/javascript">
-function selectContents(el) {
-    var range = document.createRange();
-    range.selectNodeContents(el);
-    var sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-}
-function encode () {
-	document.getElementById('output').innerHTML = encodeURI(document.getElementById('input').value);
-}
-function decode () {
-	document.getElementById('output').innerHTML = decodeURI(document.getElementById('input').value);
-}
-function autogrow(textarea){
-var adjustedHeight=textarea.clientHeight;
-	adjustedHeight=Math.max(textarea.scrollHeight, 100);
-	textarea.style.height = adjustedHeight+'px';
-}
-
-</script>
+    <div>
+        <p><textarea id="input" onkeyup="textOnChange();"></textarea></p>
+        <ul>
+            <li>HTML for LaTex:<pre>&lt;img src="https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;</pre></li>
+            <li>HTML for LaTex with link:<pre>&lt;a href="https://www.codecogs.com/eqnedit.php?latex=<span class="urlEncoded"></span>" target="_blank"&gt;
+    &lt;img src="https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;
+&lt;/a&gt;</pre></li>
+            <li>Markdown for LaTex:<pre>![<span class="url"></span>](https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span> "<span class="url"></span>")</pre></li>
+            <li>encodeURIComponent: <pre class="urlEncoded"></pre></li>
+            <li>decodeURIComponent: <pre class="urlDecoded"></pre></li>
+        </ul>
+        <p>Ref. <a href="https://www.codecogs.com/latex/eqneditor.php">https://www.codecogs.com/latex/eqneditor.php</a></p>
+    </div>
 </body>
+<script type="text/javascript">
+function textOnChange() {
+    var ary;
+    var url = document.getElementById('input').value;
+    var urlEncoded = encodeURIComponent(url);
+    var urlDecoded = decodeURIComponent(url);
+    
+    ary = document.getElementsByClassName('url');
+    for (var i = ary.length - 1; i >= 0; i--) {
+        ary[i].innerHTML = url;
+    }
+
+    ary = document.getElementsByClassName('urlEncoded');
+    for (var i = ary.length - 1; i >= 0; i--) {
+        ary[i].innerHTML = urlEncoded;
+    }
+
+    ary = document.getElementsByClassName('urlDecoded');
+    for (var i = ary.length - 1; i >= 0; i--) {
+        ary[i].innerHTML = urlDecoded;
+    }
+
+    document.getElementById('debug').innerHTML = url;
+}
+</script>
 </html>

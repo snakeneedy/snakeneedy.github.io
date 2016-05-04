@@ -16,14 +16,30 @@ pre {
 <body>
     <div>
         <p><textarea id="input" onkeyup="textOnChange();"></textarea></p>
+		<p><input type="button" onclick="textOnChange();" /></p>
         <ul>
-            <li>HTML for LaTex:<pre>&lt;img src="https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;</pre></li>
-            <li>HTML for LaTex with link:<pre>&lt;a href="https://www.codecogs.com/eqnedit.php?latex=<span class="urlEncoded"></span>" target="_blank"&gt;
+            <li>
+				HTML for LaTex:
+				<pre>&lt;img src="https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;</pre>
+			</li>
+            <li>
+				HTML for LaTex with link:
+				<pre>&lt;a href="https://www.codecogs.com/eqnedit.php?latex=<span class="urlEncoded"></span>" target="_blank"&gt;
     &lt;img src="https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;
-&lt;/a&gt;</pre></li>
-            <li>Markdown for LaTex:<pre>![<span class="url"></span>](https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span> "<span class="url"></span>")</pre></li>
-            <li>encodeURIComponent: <pre class="urlEncoded"></pre></li>
-            <li>decodeURIComponent: <pre class="urlDecoded"></pre></li>
+&lt;/a&gt;</pre>
+			</li>
+            <li>
+				Markdown for LaTex:
+				<pre>![<span class="url"></span>](https://latex.codecogs.com/svg.latex?<span class="urlEncoded"></span> "<span class="url"></span>")</pre>
+			</li>
+            <li>
+				encodeURIComponent:
+				<pre class="urlEncoded"></pre>
+			</li>
+            <li>
+				decodeURIComponent: 
+				<pre class="urlDecoded"></pre>
+			</li>
         </ul>
         <p>Ref. <a href="https://www.codecogs.com/latex/eqneditor.php">https://www.codecogs.com/latex/eqneditor.php</a></p>
     </div>

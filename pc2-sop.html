@@ -67,14 +67,24 @@ server=192.168.34.136:50002
 
 # eof $Id: pc2v9.ini 165 2007-04-07 20:05:32Z laned $
 ```
+
 - 把 `/pc2v9.ini` 移動到 `/bin` 裡面
 - Linux 環境下可以把 `/bin` 裡面所有 bat 檔刪除  
 	bash 指令: `rm *.bat`
+- Linux 下用 bash 執行
+	- 用文字編輯器分別打開 `/bin/pc2server`, `/bin/pc2admin`, `/bin/pc2judge`, `/bin/pc2board`, `/bin/pc2team`
+	- 把第一行的 `#!/bin/sh` 改成 `#!/bin/bash` 後儲存
 - 視情況可以修改 `/data/xsl` 裡的 scoreboard 模板
 - **將整個根目錄 `/` clone 一份當作 client 端**
+
+## pc2server
+
 - 開啟 `/bin/pc2server` 帳號 **site1** 密碼 **site1**
 	- 第一次執行跳出視窗要你輸入 password，這裡是對於 server 的二次密碼，依喜好輸入即可
 	- 之後執行會要求此密碼
+
+## pc2admin
+
 - 開啟 `/bin/pc2admin` 帳號 **root** 密碼 **administrator1**
 	- 設定 **Account**
 		- 用 Generate 可以快速產生想要的 team, judge, scoreboard 數量
@@ -112,6 +122,15 @@ server=192.168.34.136:50002
 			- 勾選 Stop Clock at end of contest (印象中不勾選會變成負的)
 	- 設定 **Settings**
 		- 可以修改 Contest Title
+
+## pc2judge
+
+- 執行 `/bin/pc2judge` 輸入帳號密碼
+- 預設是 `judge#` (`#` 為數字，例如：`judge2`)
+- 開啟與在 **pc2admin** 的 **Account** 相對應數量的 judge
+
+## pc2team
+
 - *再設定 client 端*
 - 以 client 資料夾為 `/`
 	- 先刪除 `/bin/pc2server` 和 `/bin/pc2admin`
@@ -119,13 +138,16 @@ server=192.168.34.136:50002
 	- 想要再防範的話可以多刪 `/bin/pc2judge` 和 `/bin/pc2board`
 	- 將 client 端的檔案分派給所有的參賽組別，並告知各組的帳號及密碼
 	(預設是帳號密碼同為 team#，如 team12)
+
+## pc2board
+
 - *scoreboard 設定*
 - 無 Apache
 	- 選定一台電腦連接投影機
 	- 開啟 `/bin/pc2board` 帳號 **scoreboard1** 密碼 **scoreboard1**
 	- 會有檔案新增至 `/bin/html/`
 	- 選一個喜歡的投影給選手看www
-	- 要修改內容請至 `/data/xsl/` 裡直接修改模板，因為這裡面的檔案室自動生成的
+	- 要修改內容請至 `/data/xsl/` 裡直接修改模板，因為這裡面的檔案是自動生成的
 - 有 Apache
 	- 小弟我還不清楚
 - 關於 scoreboard 在 display name 為中文時，會出現亂碼的問題：

@@ -85,43 +85,59 @@ server=192.168.34.136:50002
 
 ## pc2admin
 
-- 開啟 `/bin/pc2admin` 帳號 **root** 密碼 **administrator1**
-	- 設定 **Account**
-		- 用 Generate 可以快速產生想要的 team, judge, scoreboard 數量
-		- 基本上是 1 個 scoreboard、至少等同於題數的 judge、和大於參賽隊伍的 team (多幾個來做測試)
-		- 只能修改，沒辦法刪除 (小弟我不會刪)
-	- 設定 **Problems**
-		- 用 Add 新增題目
-		- 在 General 中
-			- Problem name: 要顯示的題目名稱
-			- Run Timeout Limit (Sec): TLE 的限制秒數
-			- Problem Requires Input Data
-				- Team Reads From: 基本上用 stdin
-				- Input Data File: 選輸入測資  
-				(Windows 下產生的文字檔可能會出現是否要轉換成 Linux 格式的訊息，選 Yes 就好)
-		- 在 Judging Type 選 Computer Judging
-			- Manual Review 不用選
-		- 在 Validator 中
-			- 選 Use PC^2 Validator
-			- Validator Option 選 diff
-		- 點 Add 完成
-		- 重複以上動作完成所有題目的新增
-	- 設定 **Auto Judge**
-		- 對每一個 Judge 作 Edit
-		- 勾選 Enable Auto Judging
-		- 分派題目，最基本要每個題目都分配到 1 個 Judge
-	- 設定 **Languages**
-		- 點 Add 新增
-		- 修改 Auto Populate with 的選項就好，基本上是新增 Java, GNU C++, GNU C
-	- 設定 **Times**
-		- PC<sup>2</sup> 預設是 5 小時
-		- 點 Edit
-			- Remaining: 剩餘時間
-			- Elapsed: 已過時間
-			- Length: 總時間
-			- 勾選 Stop Clock at end of contest (印象中不勾選會變成負的)
-	- 設定 **Settings**
-		- 可以修改 Contest Title
+開啟 `/bin/pc2admin` 帳號 **root** 密碼 **administrator1**
+
+### ▌ 設定 **Account**
+
++ 用 Generate 可以快速產生想要的 team, judge, scoreboard 數量
++ 基本上是 1 個 scoreboard、至少等同於題數的 judge、和大於參賽隊伍的 team (多幾個來做測試)
++ 只能修改，沒辦法刪除 (小弟我不會刪)
+
+### ▌ 設定 **Problems**
+
++ 用 Add 新增題目
++ 在 General 中
+	* Problem name: 要顯示的題目名稱
+	* Run Timeout Limit (Sec): TLE 的限制秒數
+	* Problem Requires Input Data
+		- Team Reads From: 基本上用 stdin
+		- Input Data File: 選輸入測資  
+		(Windows 下產生的文字檔可能會出現是否要轉換成 Linux 格式的訊息，選 Yes 就好)
++ 在 Judging Type 選 Computer Judging
+	* Manual Review 不用選
++ 在 Validator 中
+	* 選 Use PC^2 Validator
+	* Validator Option 選 diff
++ 點 Add 完成
++ 重複以上動作完成所有題目的新增
+
+### ▌ 設定 **Auto Judge**
+
++ 對每一個 Judge 作 Edit
++ 勾選 Enable Auto Judging
++ 分派題目，最基本要每個題目都分配到 1 個 Judge
+
+### ▌ 設定 **Languages**
+
++ 點 Add 新增
++ 修改 Auto Populate with 的選項就好，基本上是新增 Java, GNU C++, GNU C
+
+### ▌ 設定 **Times**
+
++ PC<sup>2</sup> 預設是 5 小時
++ 點 Edit
+	* Remaining: 剩餘時間
+	* Elapsed: 已過時間
+	* Length: 總時間
+	* 勾選 Stop Clock at end of contest (印象中不勾選會變成負的)
+
+### ▌ 設定 **Settings**
+
++ 可以修改 Contest Title
++ 點選 Edit Scoring Properties 修改時間懲罰
+	* 基本上 CE 跟 No (WA) 都是 20
+	* Security Violation 可以設重一點
+
 
 ## pc2judge
 
@@ -157,9 +173,26 @@ server=192.168.34.136:50002
 <a name="比賽中"></a>
 # 比賽中
 
-- 到 **admin** 端的 **Times** 點 Start
-- 切換到 **Run Contest**
-	- **Runs** 看到所有人的提交
+到 **pc2admin** 的 **Times** 點 Start
+
+## pc2admin
+
++ 切換到 **Run Contest**
++ **Logins** 看到所有登入狀況，包含 team, scoreboard, judge
+	* 點選 Logoff 可以強制目標登出
++ **Runs** 看到所有人的提交結果
++ **Clarifications** 看到所有詢問結果
+
+## pc2judge
+
++ **New Runs** 和 **New Clars** 比 admin 方便找尋新的提交和詢問
++ 在前面 Judging Type 選 Computer Judging，以及有分配 Enable Auto Judging 的狀況下，重測時點選 **Rejudge**
+	* 先 **Execute Run**
+	* (待補)
++ 若非前者的題目，需要先 **Request Run**
+	* (待補)
++ **All runs** 和 **All clarifications** 和 admin 一樣
+
 
 <a name="參考資料"></a>
 # 參考資料

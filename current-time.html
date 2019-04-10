@@ -6,5 +6,68 @@
     <title>snakeneedy/current-time</title>
   </head>
   <body>
+    <div class="container-time">
+      <div id="date"></div>
+      <div id="time"></div>
+    </div>
+    <script>
+// ES6
+function isLeapYear (y) {
+  return (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0);
+}
+
+function countDaysOfThisYear (YYYY, MM, DD) {
+  const daysInMonth = [31, (isLeapYear(+YYYY) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let numberOfDays = +DD;
+  for (let i = 0; i + 1 < +MM; i++) {
+    numberOfDays = numberOfDays + daysInMonth[i];
+  }
+  return numberOfDays;
+}
+
+function getWeekNumber (YYYY, MM, DD) {
+  let sum = countDaysOfThisYear(YYYY, MM, DD);
+  let y = YYYY - 1;
+  sum = sum + y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400);
+  return sum % 7;
+}
+
+function getWeekNumberByDate (date) {
+  return getWeekNumber(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function fillZeroLeft (number, digit) {
+  let result = `${number}`;
+  for (let i = (`${number}`).length; i < digit; i++) {
+    result = '0' + result;
+  }
+  return result;
+}
+
+// main
+let currentDate = document.getElementById('date'),
+    currentTime = document.getElementById('time');
+
+let displayCurrentTime = function () {
+  let date = new Date();
+  // format:
+  // YYYY-MM-DD WW
+  // hh:mm:ss
+  const weekNumberToString = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let YYYY = fillZeroLeft(date.getFullYear(), 4),
+    MM = fillZeroLeft(date.getMonth() + 1, 2),
+    DD = fillZeroLeft(date.getDate(), 2),
+    WW = weekNumberToString[getWeekNumberByDate(date)],
+    hh = fillZeroLeft(date.getHours(), 2),
+    mm = fillZeroLeft(date.getMinutes(), 2),
+    ss = fillZeroLeft(date.getSeconds(), 2);
+  currentDate.innerHTML = `${YYYY}-${MM}-${DD} ${WW}`;
+  currentTime.innerHTML = `${hh}:${mm}:${ss}`;
+  document.title = `${hh}:${mm}:${ss}`;
+};
+
+displayCurrentTime();
+setInterval( displayCurrentTime, 250 );
+    </script>
   </body>
 </html>

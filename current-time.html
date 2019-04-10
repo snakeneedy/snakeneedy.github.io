@@ -4,6 +4,86 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>snakeneedy/current-time</title>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+body {
+  background-color: #D5D5D5;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+.container-time {
+  display: table-cell;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 1024px) {
+  .container-time {
+    width: 1000px;
+    height: 400px;
+    margin-left: -500px;
+    margin-top: -200px;
+  }
+  .container-time > #date {
+    font-size: 96px;
+  }
+  .container-time > #time {
+    font-size: 250px;
+  }
+}
+
+@media screen and (min-width:  768px) and (max-width: 1023px) {
+  /* 1000 -> 750 */
+  .container-time {
+    width: 750px;
+    height: 300px;
+    margin-left: -375px;
+    margin-top: -150px;
+  }
+  .container-time > #date {
+    font-size: 72px;
+  }
+  .container-time > #time {
+    font-size: 187.5px;
+  }
+}
+
+@media screen and (min-width:  480px) and (max-width:  767px) {
+  /* 1000 -> 450 */
+  .container-time {
+    width: 450px;
+    height: 180px;
+    margin-left: -225px;
+    margin-top: -90px;
+  }
+  .container-time > #date {
+    font-size: 43.2px;
+  }
+  .container-time > #time {
+    font-size: 112.5px;
+  }
+}
+
+@media screen and (max-width:  479px) {
+  /* 1000 -> 320 */
+  .container-time {
+    width: 320px;
+    height: 128px;
+    margin-left: -160px;
+    margin-top: -64px;
+  }
+  .container-time > #date {
+    font-size: 30.72px;
+  }
+  .container-time > #time {
+    font-size: 80px;
+  }
+}
+    </style>
   </head>
   <body>
     <div class="container-time">

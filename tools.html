@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Tools</title>
+  <meta charset="utf-8" />
+  <title>Tools</title>
 <style type="text/css">
 textarea {
-    width: 80%;
-    height: 200px;
+  width: 80%;
+  height: 200px;
 }
 pre {
-    background-color: rgb(230, 230, 230);
+  background-color: rgb(230, 230, 230);
 }
 </style>
 </head>
 <body>
-    <div>
-        <p><textarea id="input" onkeyup="textOnChange();"></textarea></p>
-        <ul>
-            <li>
-                HTML for LaTex:
-                <pre>&lt;img src="https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;</pre>
-            </li>
-            <li>
-                HTML for LaTex with link:
-                <pre>&lt;a href="https://www.codecogs.com/eqnedit.php?latex=<span class="uriComponentEncoded"></span>" target="_blank"&gt;
-    &lt;img src="https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;
+  <div>
+    <p><textarea id="input" onkeyup="textOnChange();"></textarea></p>
+    <ul>
+      <li>
+        HTML for LaTex:
+        <pre>&lt;img src="https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;</pre>
+      </li>
+      <li>
+        HTML for LaTex with link:
+        <pre>&lt;a href="https://www.codecogs.com/eqnedit.php?latex=<span class="uriComponentEncoded"></span>" target="_blank"&gt;
+  &lt;img src="https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span>" title="<span class="url"></span>" alt="<span class="url"></span>" /&gt;
 &lt;/a&gt;</pre>
-            </li>
-            <li>
-                Markdown for LaTex:
-                <pre>![<span class="url"></span>](https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span> "<span class="url"></span>")</pre>
-            </li>
-            <li>
-                encodeURI:
-                <pre class="uriEncoded"></pre>
-            </li>
-            <li>
-                decodeURI: 
-                <pre class="uriDecoded"></pre>
-            </li>
-            <li>
-                encodeURIComponent:
-                <pre class="uriComponentEncoded"></pre>
-            </li>
-            <li>
-                decodeURIComponent: 
-                <pre class="uriComponentDecoded"></pre>
-            </li>
-        </ul>
-        <p>Ref. <a href="https://www.codecogs.com/latex/eqneditor.php">https://www.codecogs.com/latex/eqneditor.php</a></p>
-    </div>
+      </li>
+      <li>
+        Markdown for LaTex:
+        <pre>![<span class="url"></span>](https://latex.codecogs.com/svg.latex?<span class="uriComponentEncoded"></span> "<span class="url"></span>")</pre>
+      </li>
+      <li>
+        encodeURI:
+        <pre class="uriEncoded"></pre>
+      </li>
+      <li>
+        decodeURI:
+        <pre class="uriDecoded"></pre>
+      </li>
+      <li>
+        encodeURIComponent:
+        <pre class="uriComponentEncoded"></pre>
+      </li>
+      <li>
+        decodeURIComponent:
+        <pre class="uriComponentDecoded"></pre>
+      </li>
+    </ul>
+    <p>Ref. <a href="https://www.codecogs.com/latex/eqneditor.php">https://www.codecogs.com/latex/eqneditor.php</a></p>
+  </div>
 </body>
 <script type="text/javascript">
 function textOnChange() {
-    var ary;
-    var url = document.getElementById('input').value;
-    var uriEncoded = encodeURI(url);
-    var uriDecoded = decodeURI(url);
-    var uriComponentEncoded = encodeURIComponent(url);
-    var uriComponentDecoded = decodeURIComponent(url);
-    
-    ary = document.getElementsByClassName('url');
-    for (var i = ary.length - 1; i >= 0; i--) {
-        ary[i].innerHTML = url;
-    }
+  var ary;
+  var url = document.getElementById('input').value;
+  var uriEncoded = encodeURI(url);
+  var uriDecoded = decodeURI(url);
+  var uriComponentEncoded = encodeURIComponent(url);
+  var uriComponentDecoded = decodeURIComponent(url);
 
-    ary = document.getElementsByClassName('uriEncoded');
-    for (var i = ary.length - 1; i >= 0; i--) {
-        ary[i].innerHTML = uriEncoded;
-    }
+  ary = document.getElementsByClassName('url');
+  for (var i = ary.length - 1; i >= 0; i--) {
+    ary[i].innerHTML = url;
+  }
 
-    ary = document.getElementsByClassName('uriDecoded');
-    for (var i = ary.length - 1; i >= 0; i--) {
-        ary[i].innerHTML = uriDecoded;
-    }
+  ary = document.getElementsByClassName('uriEncoded');
+  for (var i = ary.length - 1; i >= 0; i--) {
+    ary[i].innerHTML = uriEncoded;
+  }
 
-    ary = document.getElementsByClassName('uriComponentEncoded');
-    for (var i = ary.length - 1; i >= 0; i--) {
-        ary[i].innerHTML = uriComponentEncoded;
-    }
+  ary = document.getElementsByClassName('uriDecoded');
+  for (var i = ary.length - 1; i >= 0; i--) {
+    ary[i].innerHTML = uriDecoded;
+  }
 
-    ary = document.getElementsByClassName('uriComponentDecoded');
-    for (var i = ary.length - 1; i >= 0; i--) {
-        ary[i].innerHTML = uriComponentDecoded;
-    }
+  ary = document.getElementsByClassName('uriComponentEncoded');
+  for (var i = ary.length - 1; i >= 0; i--) {
+    ary[i].innerHTML = uriComponentEncoded;
+  }
 
-    document.getElementById('debug').innerHTML = url;
+  ary = document.getElementsByClassName('uriComponentDecoded');
+  for (var i = ary.length - 1; i >= 0; i--) {
+    ary[i].innerHTML = uriComponentDecoded;
+  }
+
+  document.getElementById('debug').innerHTML = url;
 }
 </script>
 </html>
